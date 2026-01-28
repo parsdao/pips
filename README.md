@@ -95,6 +95,9 @@ No KYC. No registration. No metadata. Communications are private by design, not 
 | **Security** | [PIP-0003](./PIPs/pip-0003-coercion-resistance.md) | Coercion resistance model | Draft |
 | **Mobile** | [PIP-0004](./PIPs/pip-0004-mobile-embedded-node.md) | Mobile app with embedded node | Draft |
 | **Sessions** | [PIP-0005](./PIPs/pip-0005-session-protocol.md) | Session daemon protocol | Draft |
+| **Governance** | [PIP-7000](./PIPs/pip-7000-dao-governance-framework.md) | DAO governance framework | Draft |
+| **Governance** | [PIP-7001](./PIPs/pip-7001-town-hall-protocol.md) | Town Hall protocol | Draft |
+| **Governance** | [PIP-7002](./PIPs/pip-7002-treasury-management.md) | Treasury management | Draft |
 
 ---
 
@@ -124,6 +127,14 @@ Draft → Review → Voting → Approved/Rejected → Implemented
 3. **Voting**: vePARS holders vote on-chain
 4. **Approved**: Passes with >50% approval and quorum
 5. **Implemented**: Development and deployment
+
+---
+
+## Governance Tooling
+
+- **Governance Portal**: [pars.vote](https://pars.vote) — On-chain proposal voting for vePARS holders
+- **DAO Platform**: Built on Lux DAO (Safe + Azorius governance stack)
+- **Town Hall**: Private audio/video rooms for DAO member discussions
 
 ---
 
