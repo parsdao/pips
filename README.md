@@ -4,7 +4,7 @@
 
 **Governance and standardization framework for [Pars Network](https://pars.network)**
 
-_Sovereign infrastructure for the global Persian diaspora. Private communications. Censorship resistance. Coercion-proof governance._
+_Sovereign infrastructure for the global Persian community. Private communications. Censorship resistance. Coercion-proof governance._
 
 [![Documentation](https://img.shields.io/badge/docs-latest-brightgreen?style=for-the-badge)](https://docs.pars.network)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](./LICENSE)
