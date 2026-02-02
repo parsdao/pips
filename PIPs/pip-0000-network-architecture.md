@@ -17,7 +17,7 @@ tier: core
 
 Pars Network is a dual-layer sovereign blockchain infrastructure providing:
 
-1. **Pars EVM**: L2 EVM-compatible chain on Lux Network with advanced precompiles
+1. **Pars EVM**: L2 EVM-compatible chain on Pars Network with advanced precompiles
 2. **Pars Session**: Native L1 session daemon for private, permissionless communications
 
 This PIP establishes the foundational architecture for both layers.
@@ -286,7 +286,7 @@ sessiond --bootstrap /ip4/x.x.x.x/tcp/9000/p2p/QmPeerId
 
 ## References
 
-- [Lux Network Documentation](https://docs.lux.network)
+- [Pars Network Documentation](https://docs.lux.network)
 - [PIP-0001: Mesh Network](./pip-0001-mesh-network.md)
 - [PIP-0002: Post-Quantum Encryption](./pip-0002-post-quantum.md)
 - [PIP-0005: Session Protocol](./pip-0005-session-protocol.md)

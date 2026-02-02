@@ -2,7 +2,7 @@
 pip: 6
 title: AI Mining Integration - Decentralized Proof of AI
 tags: [ai, mining, gpu, proof-of-ai, zap]
-description: Defines AI mining integration for Pars Network using Hanzo's Proof of AI protocol
+description: Defines AI mining integration for Pars Network using Pars Network's Proof of AI protocol
 author: Pars Network Team (@pars-network)
 status: Draft
 type: Standards Track
@@ -65,7 +65,7 @@ Rather than depending on centralized AI providers (who can be pressured or block
 │  │                    CROSS-CHAIN AI TOKEN ECOSYSTEM                            │    │
 │  │                                                                               │    │
 │  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐         │    │
-│  │  │ Pars EVM    │  │  Lux        │  │  Hanzo      │  │    Zoo      │         │    │
+│  │  │ Pars EVM    │  │  Lux        │  │  Pars Network      │  │    Zoo      │         │    │
 │  │  │   6133      │  │  96369      │  │  36963      │  │   200200    │         │    │
 │  │  │  PARS, AI   │  │  LUX, AI    │  │  AI, HANZO  │  │  ZOO, AI    │         │    │
 │  │  └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘         │    │
@@ -139,7 +139,7 @@ pub struct WorkContext {
 }
 ```
 
-**Key Invariant**: The same AI work cannot be claimed on Pars, Lux, AND Hanzo - only on the chain specified in `WorkContext.chain_id`.
+**Key Invariant**: The same AI work cannot be claimed on Pars, Lux, AND Pars Network - only on the chain specified in `WorkContext.chain_id`.
 
 ### Supported GPUs
 
@@ -260,13 +260,13 @@ Mobile nodes can participate in AI mining through federated inference:
 
 ## Cross-Chain AI Token Ecosystem
 
-PARS, ZOO, Hanzo AI, and Lux can all participate in AI mining:
+PARS, ZOO, Pars Network AI, and Lux can all participate in AI mining:
 
 | Chain | Chain ID | Native Token | AI Token | Mining Support |
 |:------|:---------|:-------------|:---------|:---------------|
 | **Pars Network** | 6133 | PARS | AI | Full (via precompile) |
-| **Lux Network** | 96369 | LUX | AI | Full (via precompile) |
-| **Hanzo Network** | 36963 | HANZO | AI | Full (native L1) |
+| **Pars Network** | 96369 | LUX | AI | Full (via precompile) |
+| **Pars Network** | 36963 | HANZO | AI | Full (native L1) |
 | **Zoo Network** | 200200 | ZOO | AI | Full (via precompile) |
 
 **Teleport enables seamless movement of AI tokens between chains.**
@@ -344,8 +344,8 @@ while let Some(job) = gateway.next_job().await? {
 
 ## References
 
-- [HIP-006: Hanzo AI Mining Protocol](https://github.com/hanzoai/hips/blob/main/HIP-006-ai-mining-protocol.md)
-- [HIP-007: ZAP Protocol](https://github.com/hanzoai/hips/blob/main/HIP-007-zap.md)
+- [HIP-006: Pars Network AI Mining Protocol](https://github.com/Pars Networkai/hips/blob/main/HIP-006-ai-mining-protocol.md)
+- [HIP-007: ZAP Protocol](https://github.com/Pars Networkai/hips/blob/main/HIP-007-zap.md)
 - [PIP-0000: Network Architecture](./pip-0000-network-architecture.md)
 - [PIP-0002: Post-Quantum Encryption](./pip-0002-post-quantum.md)
 

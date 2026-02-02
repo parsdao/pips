@@ -17,7 +17,7 @@ _Sovereign infrastructure for the global Persian community. Private communicatio
 
 Pars Network is a **dual-layer sovereign blockchain** combining:
 
-1. **Pars EVM (L2)**: EVM-compatible chain on Lux Network with advanced precompiles
+1. **Pars EVM (L2)**: EVM-compatible chain on Pars Network with advanced precompiles
 2. **Pars Session (L1)**: Native session daemon for private, permissionless communications
 
 ```
