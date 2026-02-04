@@ -1,0 +1,14 @@
+{
+  "name": "pars-pips",
+  "version": "1.0.0",
+  "description": "Pars Improvement Proposals",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "^1.5.0"
+  }
+}
