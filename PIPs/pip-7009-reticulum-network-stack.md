@@ -122,6 +122,94 @@ RNS provides:
 - Mesh routing (no single path)
 - Works offline with store-and-forward
 
+## Post-Quantum Security (Hybrid Mode)
+
+Pars inherits hybrid post-quantum cryptography from LP-9701, with additional considerations specific to MIGA Protocol sovereign infrastructure requirements.
+
+### Why Post-Quantum Matters for MIGA
+
+1. **Long-Term Data Protection**: Sovereign infrastructure handles sensitive national data with multi-decade retention requirements. Harvest-now-decrypt-later attacks are a real threat.
+
+2. **Regulatory Compliance**: Many jurisdictions are mandating quantum-resistant cryptography for critical infrastructure. NIST requires federal systems to transition by 2035.
+
+3. **Forward Secrecy Duration**: MIGA validators may operate for decades. Cryptographic keys protecting historical transactions must resist future quantum computers.
+
+4. **Sovereignty Requirements**: Nations cannot rely on cryptographic protections that may fail within the operational lifetime of their infrastructure.
+
+### Hybrid Cryptographic Suite
+
+Pars uses the same hybrid approach as LP-9701:
+
+| Purpose | Classical | Post-Quantum | Combined |
+|---------|-----------|--------------|----------|
+| Identity Signing | Ed25519 | ML-DSA-65 | Hybrid (AND) |
+| Key Exchange | X25519 | ML-KEM-768 | Hybrid KEM |
+| Session Encryption | AES-256-GCM | - | Same |
+| Key Derivation | HKDF-SHA256 | - | Same |
+
+Both ML-KEM-768 and ML-DSA-65 provide NIST Level 3 security (~192-bit classical equivalent).
+
+### Wire Format Impact
+
+| Component | Classical | Hybrid | Delta |
+|-----------|-----------|--------|-------|
+| Public Identity | 64 bytes | ~3.2 KB | +3.1 KB |
+| Signature | 64 bytes | ~2.5 KB | +2.4 KB |
+| Key Exchange | 64 bytes | ~1.2 KB | +1.1 KB |
+| Handshake Total | ~256 bytes | ~7.5 KB | +7.2 KB |
+
+### Performance Impact for Low-Bandwidth Links
+
+MIGA deployments often use constrained networks (LoRa, satellite, rural cellular). Performance assessment:
+
+| Link Type | Bandwidth | Classical Handshake | Hybrid Handshake | Acceptable? |
+|-----------|-----------|---------------------|------------------|-------------|
+| LoRa SF7 | 5.5 kbps | 370 ms | 11 sec | Marginal |
+| LoRa SF12 | 250 bps | 8 sec | 4 min | Poor |
+| Satellite | 64 kbps | 32 ms | 940 ms | Yes |
+| Rural 3G | 384 kbps | 5 ms | 156 ms | Yes |
+| TCP/IP | 100 Mbps | <1 ms | <1 ms | Yes |
+
+**Recommendation**: For LoRa SF12 deployments, use classical-only mode with periodic key rotation, or pre-establish long-lived sessions with infrequent re-keying.
+
+### Regulatory Alignment
+
+| Jurisdiction | Requirement | Status |
+|--------------|-------------|--------|
+| NIST (US) | Federal PQC migration by 2035 | Compliant |
+| ANSSI (France) | Hybrid mode recommended | Compliant |
+| BSI (Germany) | Level 3+ required for sovereign | Compliant |
+| NCSC (UK) | PQC transition planning required | Compliant |
+
+### Configuration
+
+```yaml
+# ~/.pars/config.yaml
+rns:
+  enabled: true
+  postQuantum: true           # Enable hybrid PQ mode (default)
+  requirePostQuantum: false   # Allow classical-only peers
+  # For constrained links:
+  # postQuantum: false        # Disable for LoRa SF12
+```
+
+### Backward Compatibility with Classical Peers
+
+Pars validators can interoperate with classical-only peers:
+
+1. **Capability Exchange**: Handshake advertises PQ support
+2. **Graceful Degradation**: Falls back to classical if peer lacks PQ
+3. **Policy Enforcement**: `requirePostQuantum: true` rejects classical peers
+4. **Mixed Networks**: PQ and classical validators coexist
+
+### References
+
+- [NIST FIPS 203](https://csrc.nist.gov/pubs/fips/203/final) - ML-KEM specification
+- [NIST FIPS 204](https://csrc.nist.gov/pubs/fips/204/final) - ML-DSA specification
+- [LP-4316](../../../../lux/lps/lp-4316-ml-dsa.md) - Lux ML-DSA implementation
+- [LP-4318](../../../../lux/lps/lp-4318-ml-kem.md) - Lux ML-KEM implementation
+- [LP-9701](../../../lux/lps/LPs/lp-9701-reticulum-network-stack.md) - Base RNS transport specification
+
 ## Security Considerations
 
 1. **Validator Identity**: RNS identity is separate from validator signing key
@@ -129,6 +217,9 @@ RNS provides:
 3. **Forward Secrecy**: Each link uses ephemeral keys
 4. **Replay Protection**: Timestamps prevent announcement replay
 5. **Sybil Resistance**: Existing stake requirements apply regardless of transport
+6. **Quantum Resistance**: Hybrid PQ mode protects sovereign infrastructure against future quantum threats
+7. **Harvest-Now-Decrypt-Later Defense**: Long-term session confidentiality via ML-KEM-768
+8. **Regulatory Compliance**: NIST Level 3 satisfies current sovereign infrastructure requirements
 
 ## Backwards Compatibility
 

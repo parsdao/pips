@@ -1,9 +1,9 @@
 ---
 pip: 7000
 title: Pars DAO Governance Framework
-tags: [governance, dao, safe, azorius, voting]
-description: Defines the DAO governance framework for Pars Network using vePARS and Safe multisig
-author: Pars Network Team (@pars-network)
+tags: [governance, dao, safe, governor, voting]
+description: Defines the DAO governance framework for Pars Network using veASHA and Safe multisig
+author: Pars DAO (@parsdao)
 status: Draft
 type: Standards Track
 category: Governance
@@ -15,7 +15,7 @@ tier: governance
 
 ## Abstract
 
-This PIP defines the DAO governance framework for Pars Network. It establishes the rules, mechanisms, and lifecycle for on-chain governance using vote-escrowed PARS (vePARS) tokens, Safe multisig execution, and the Azorius module for proposal management. The framework is designed to be censorship-resistant, coercion-proof, and post-quantum secure.
+This PIP defines the DAO governance framework for Pars Network. It establishes the rules, mechanisms, and lifecycle for on-chain governance using vote-escrowed PARS (veASHA) tokens, Safe multisig execution, and the Governor module for proposal management. The framework is designed to be censorship-resistant, coercion-proof, and post-quantum secure.
 
 ## Motivation
 
@@ -24,7 +24,7 @@ Pars Network requires a governance system that:
 1. **Cannot be censored** - No central authority can block proposals or votes
 2. **Cannot be coerced** - Voters cannot be forced to vote against their will
 3. **Is transparent** - All governance actions are verifiable on-chain
-4. **Is inclusive** - All vePARS holders can participate regardless of location
+4. **Is inclusive** - All veASHA holders can participate regardless of location
 5. **Is secure** - Resistant to quantum attacks and Sybil manipulation
 
 Existing DAO frameworks fail for the Pars diaspora because:
@@ -44,7 +44,7 @@ Existing DAO frameworks fail for the Pars diaspora because:
 │                                                                                      │
 │  TOKEN LAYER                                                                        │
 │  ┌───────────────────────────────────────────────────────────────────────────────┐  │
-│  │  PARS Token ──► Lock ──► vePARS (vote-escrowed)                              │  │
+│  │  PARS Token ──► Lock ──► veASHA (vote-escrowed)                              │  │
 │  │                                                                               │  │
 │  │  Lock Duration     Weight Multiplier                                          │  │
 │  │  ─────────────     ─────────────────                                          │  │
@@ -55,13 +55,13 @@ Existing DAO frameworks fail for the Pars diaspora because:
 │  └───────────────────────────────────────────────────────────────────────────────┘  │
 │                                      │                                               │
 │                                      ▼                                               │
-│  PROPOSAL LAYER (Azorius Module)                                                    │
+│  PROPOSAL LAYER (Governor Module)                                                    │
 │  ┌───────────────────────────────────────────────────────────────────────────────┐  │
 │  │                                                                               │  │
 │  │  Draft ──► Active (7 days) ──► Queued (48h timelock) ──► Executed            │  │
 │  │    │                │                                        │                │  │
 │  │    │           Vote Period                              Safe Multisig         │  │
-│  │    │         (vePARS weighted)                          (3-of-5 execute)      │  │
+│  │    │         (veASHA weighted)                          (3-of-5 execute)      │  │
 │  │    │                                                                          │  │
 │  │    └──► Cancelled                                                             │  │
 │  │                                                                               │  │
@@ -75,19 +75,19 @@ Existing DAO frameworks fail for the Pars diaspora because:
 │  │  │ Signer1 │ │ Signer2 │ │ Signer3 │ │ Signer4 │ │ Signer5 │               │  │
 │  │  └─────────┘ └─────────┘ └─────────┘ └─────────┘ └─────────┘               │  │
 │  │                                                                               │  │
-│  │  Azorius module enforces: quorum met + approval threshold + timelock elapsed  │  │
+│  │  Governor module enforces: quorum met + approval threshold + timelock elapsed  │  │
 │  └───────────────────────────────────────────────────────────────────────────────┘  │
 │                                                                                      │
 └─────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### vePARS Token
+### veASHA Token
 
-vePARS is a non-transferable governance token obtained by locking PARS tokens:
+veASHA is a non-transferable governance token obtained by locking PARS tokens:
 
 ```solidity
 interface IVePARS {
-    /// @notice Lock PARS tokens to receive vePARS
+    /// @notice Lock PARS tokens to receive veASHA
     /// @param amount Amount of PARS to lock
     /// @param duration Lock duration in seconds (min 30 days, max 4 years)
     function lock(uint256 amount, uint256 duration) external;
@@ -108,23 +108,23 @@ interface IVePARS {
 }
 ```
 
-Voting power decays linearly as the lock approaches expiry. A 4-year lock with 1000 PARS starts at 1000 vePARS and decreases to 0 at expiry.
+Voting power decays linearly as the lock approaches expiry. A 4-year lock with 1000 PARS starts at 1000 veASHA and decreases to 0 at expiry.
 
 ### Safe Multisig Execution Layer
 
 The DAO treasury and execution are managed by a Gnosis Safe with:
 
 - **Threshold**: 3-of-5 signers required for standard operations
-- **Signers**: Elected by vePARS holders via governance vote
+- **Signers**: Elected by veASHA holders via governance vote
 - **Term**: 6-month terms with staggered rotation
 - **Removal**: Any signer can be removed by governance vote (standard quorum)
 
-### Azorius Module
+### Governor Module
 
-The Azorius module connects vePARS voting to Safe execution:
+The Governor module connects veASHA voting to Safe execution:
 
 - Proposals are submitted on-chain with encoded transaction data
-- vePARS holders vote during the active period
+- veASHA holders vote during the active period
 - Approved proposals enter the timelock queue
 - After timelock, any Safe signer can execute
 
@@ -133,7 +133,7 @@ The Azorius module connects vePARS voting to Safe execution:
 | Phase | Duration | Description |
 |:------|:---------|:------------|
 | **Draft** | Indefinite | Proposal created, not yet submitted on-chain |
-| **Active** | 7 days | Voting period, vePARS holders cast votes |
+| **Active** | 7 days | Voting period, veASHA holders cast votes |
 | **Queued** | 48 hours minimum | Timelock before execution |
 | **Executed** | - | Transaction executed via Safe |
 | **Cancelled** | - | Proposer or governance cancels before execution |
@@ -143,9 +143,9 @@ The Azorius module connects vePARS voting to Safe execution:
 
 | Parameter | Value | Description |
 |:----------|:------|:------------|
-| **Quorum** | 10% of circulating vePARS | Minimum participation required |
+| **Quorum** | 10% of circulating veASHA | Minimum participation required |
 | **Approval Threshold** | >50% of votes cast | Simple majority to pass |
-| **Proposal Threshold** | 100,000 vePARS | Minimum voting power to create proposal |
+| **Proposal Threshold** | 100,000 veASHA | Minimum voting power to create proposal |
 | **Voting Period** | 7 days | Duration of active voting |
 | **Timelock** | 48 hours minimum | Delay before execution |
 | **Vote Options** | For / Against / Abstain | Abstain counts toward quorum |
@@ -176,7 +176,7 @@ This uses the ML-DSA precompile at `0x0601` defined in PIP-0002.
 
 For voters in high-risk environments, anonymous voting mode is available:
 
-1. **ZK Proof of Eligibility**: Voter proves they hold sufficient vePARS without revealing their address
+1. **ZK Proof of Eligibility**: Voter proves they hold sufficient veASHA without revealing their address
 2. **Anonymous Ballot**: Vote is cast via ZK proof using the ZK precompile at `0x0900`
 3. **Nullifier**: Prevents double-voting without revealing identity
 4. **Deniability**: Voter can produce a fake receipt showing any vote direction
@@ -193,7 +193,7 @@ For voters in high-risk environments, anonymous voting mode is available:
 │     │ ───────────────────────►│                                  │
 │     │                         │                                  │
 │     │  2. ZK Proof:           │                                  │
-│     │     - I hold vePARS     │                                  │
+│     │     - I hold veASHA     │                                  │
 │     │     - My vote is valid  │                                  │
 │     │     - Nullifier unused  │                                  │
 │     │ ───────────────────────►│                                  │
@@ -210,7 +210,7 @@ For voters in high-risk environments, anonymous voting mode is available:
 The governance portal is accessible at **pars.vote** and provides:
 
 - Proposal browsing, creation, and voting
-- vePARS lock management
+- veASHA lock management
 - Delegation interface
 - Historical voting records
 - Accessible via Pars mesh network (PIP-0001) during internet blackouts
@@ -219,13 +219,13 @@ The governance portal is accessible at **pars.vote** and provides:
 
 ### Vote Buying
 
-- vePARS is non-transferable, reducing direct vote buying
+- veASHA is non-transferable, reducing direct vote buying
 - Lock duration commitment makes short-term manipulation expensive
 - Anonymous voting mode prevents verifiable vote selling
 
 ### Governance Attacks
 
-- Proposal threshold (100,000 vePARS) prevents spam
+- Proposal threshold (100,000 veASHA) prevents spam
 - Timelock allows community review before execution
 - Emergency freeze: any 2-of-5 Safe signers can pause execution for 72 hours
 - Guardian role can veto malicious proposals within timelock period
@@ -247,7 +247,7 @@ The governance portal is accessible at **pars.vote** and provides:
 - [PIP-0002: Post-Quantum Encryption](./pip-0002-post-quantum.md)
 - [PIP-0003: Coercion Resistance](./pip-0003-coercion-resistance.md)
 - [Gnosis Safe Documentation](https://docs.safe.global)
-- [Azorius Module](https://github.com/decentdao/decent-contracts)
+- [Governor Module](https://github.com/luxfi/dao-contracts)
 - [FIPS 204: ML-DSA](https://csrc.nist.gov/pubs/fips/204/final)
 
 ## Copyright

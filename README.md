@@ -133,7 +133,7 @@ Draft → Review → Voting → Approved/Rejected → Implemented
 ## Governance Tooling
 
 - **Governance Portal**: [pars.vote](https://pars.vote) — On-chain proposal voting for vePARS holders
-- **DAO Platform**: Built on Lux DAO (Safe + Azorius governance stack)
+- **DAO Platform**: Built on Lux DAO (Safe + Governor governance stack)
 - **Town Hall**: Private audio/video rooms for DAO member discussions
 
 ---

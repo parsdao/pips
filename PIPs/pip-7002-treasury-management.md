@@ -15,7 +15,7 @@ tier: governance
 
 ## Abstract
 
-This PIP defines the treasury management standard for Pars DAO. It establishes policies for fund custody, spending authorization, contributor payments, reserve requirements, and emergency procedures. The treasury operates through a Safe multisig with Azorius governance integration and uses Sablier for continuous streaming payments.
+This PIP defines the treasury management standard for Pars DAO. It establishes policies for fund custody, spending authorization, contributor payments, reserve requirements, and emergency procedures. The treasury operates through a Safe multisig with Governor governance integration and uses Sablier for continuous streaming payments.
 
 ## Motivation
 
@@ -44,7 +44,7 @@ Without formalized treasury management:
 │                                                                                      │
 │  GOVERNANCE LAYER (PIP-7000)                                                        │
 │  ┌───────────────────────────────────────────────────────────────────────────────┐  │
-│  │  vePARS Voting ──► Azorius Module ──► Proposal Approval                      │  │
+│  │  vePARS Voting ──► Governor Module ──► Proposal Approval                      │  │
 │  └───────────────────────────────────────────────────────────────────────────────┘  │
 │                                      │                                               │
 │                                      ▼                                               │
@@ -297,7 +297,7 @@ In case of signer compromise:
 - [PIP-0005: Session Protocol](./pip-0005-session-protocol.md)
 - [Gnosis Safe Documentation](https://docs.safe.global)
 - [Sablier Documentation](https://docs.sablier.com)
-- [Azorius Module](https://github.com/decentdao/decent-contracts)
+- [Governor Module](https://github.com/luxfi/dao-contracts)
 
 ## Copyright
 
