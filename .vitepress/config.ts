@@ -38,6 +38,9 @@ export default defineConfig({
             { text: 'PIP-0006: AI Mining Integration', link: '/PIPs/pip-0006-ai-mining-integration' },
             { text: 'PIP-0007: Parsd Architecture', link: '/PIPs/pip-0007-parsd-architecture' },
             { text: 'PIP-0008: Pars Economics', link: '/PIPs/pip-0008-pars-economics' },
+            { text: 'PIP-0010: Data Integrity Seal', link: '/PIPs/pip-0010-data-integrity-seal' },
+            { text: 'PIP-0011: Content Provenance', link: '/PIPs/pip-0011-content-provenance' },
+            { text: 'PIP-0013: Encrypted CRDT', link: '/PIPs/pip-0013-encrypted-crdt' },
           ]
         },
         {
@@ -54,6 +57,14 @@ export default defineConfig({
             { text: 'PIP-7007: Fractal Governance', link: '/PIPs/pip-7007-fractal-governance' },
             { text: 'PIP-7008: Liquid Staking', link: '/PIPs/pip-7008-liquid-staking' },
             { text: 'PIP-7009: Reticulum Network', link: '/PIPs/pip-7009-reticulum-network-stack' },
+            { text: 'PIP-7010: Shadow Government', link: '/PIPs/pip-7010-shadow-governance' },
+          ]
+        },
+        {
+          text: 'Privacy & FHE',
+          collapsed: false,
+          items: [
+            { text: 'PIP-0012: Encrypted Voting', link: '/PIPs/pip-0012-encrypted-voting' },
           ]
         },
       ],

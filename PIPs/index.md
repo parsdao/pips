@@ -15,6 +15,15 @@ Complete index of Pars Improvement Proposals.
 | [PIP-0006](./pip-0006-ai-mining-integration) | AI Mining Integration | Draft |
 | [PIP-0007](./pip-0007-parsd-architecture) | Parsd Architecture | Draft |
 | [PIP-0008](./pip-0008-pars-economics) | Pars Economics | Draft |
+| [PIP-0010](./pip-0010-data-integrity-seal) | Verifiable Data Integrity Seal | Draft |
+| [PIP-0011](./pip-0011-content-provenance) | Content Provenance & Media Authentication | Draft |
+| [PIP-0013](./pip-0013-encrypted-crdt) | Encrypted CRDT for Offline-First Privacy | Draft |
+
+## Privacy & FHE
+
+| PIP | Title | Status |
+|:----|:------|:-------|
+| [PIP-0012](./pip-0012-encrypted-voting) | Encrypted Voting & Anonymous Governance | Draft |
 
 ## Governance (7xxx)
 
@@ -30,6 +39,7 @@ Complete index of Pars Improvement Proposals.
 | [PIP-7007](./pip-7007-fractal-governance) | Fractal Governance | Draft |
 | [PIP-7008](./pip-7008-liquid-staking) | Liquid Staking | Draft |
 | [PIP-7009](./pip-7009-reticulum-network-stack) | Reticulum Network Stack | Draft |
+| [PIP-7010](./pip-7010-shadow-governance) | Shadow Government Protocol | Draft |
 
 ## Categories
 
