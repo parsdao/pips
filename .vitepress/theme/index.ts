@@ -1,0 +1,8 @@
+import { h } from 'vue'
+import Theme from 'vitepress/theme'
+import './custom.css'
+
+export default {
+  ...Theme,
+  Layout: () => h(Theme.Layout),
+}

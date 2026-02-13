@@ -6,15 +6,15 @@ export default defineConfig({
   description: 'Pars Improvement Proposals - Governance framework for Pars Network',
 
   head: [
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
-    ['meta', { name: 'theme-color', content: '#D4A846' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+    ['meta', { name: 'theme-color', content: '#00abff' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: 'Pars Improvement Proposals' }],
     ['meta', { property: 'og:description', content: 'Governance and standardization framework for Pars Network' }],
   ],
 
   themeConfig: {
-    logo: '/logo.svg',
+    logo: '/logo.png',
 
     nav: [
       { text: 'Home', link: '/' },
