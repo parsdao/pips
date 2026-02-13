@@ -577,6 +577,36 @@ This overhead is acceptable because:
 3. Security is non-negotiable in the Pars threat model
 4. Hardware acceleration (GPU, FPGA) can reduce FHE overhead
 
+## Reference Implementation
+
+### Smart Contract (Solidity + FHE)
+
+**Repository**: [luxfhe/examples/encrypted-crdt](https://github.com/luxfhe/luxfhe/tree/main/examples/encrypted-crdt)
+
+| File | Description |
+|:-----|:------------|
+| `contracts/EncryptedCRDT.sol` | LWW-Register with FHE-encrypted values, OR-Set with tag-based add/remove, Lamport timestamp conflict resolution, deterministic merge |
+| `test/EncryptedCRDT.test.ts` | LWW semantics (higher timestamp wins), stale rejection, merge operations, OR-Set add/remove, decryption |
+| `tasks/set-register.ts` | Set encrypted register values |
+| `tasks/get-register.ts` | Read and decrypt registers |
+| `tasks/merge-registers.ts` | Merge conflicting peer registers |
+
+### Boolean-Circuit FHE (Go)
+
+**Repository**: [luxfi/fhe/cmd/crdt](https://github.com/luxfi/fhe/tree/main/cmd/crdt)
+
+Pure Go implementation using boolean gate FHE (TFHE):
+- LWW-Register with encrypted values
+- MUX gate for homomorphic conflict resolution
+- Timestamp comparison under encryption
+- Simulates two peers with independent state
+
+### Lux Network LPs
+
+- [LP-6500: fheCRDT Architecture](https://lps.lux.network/docs/lp-6500-fhecrdt-architecture) — Core specification
+- [LP-6501: DocReceipts](https://lps.lux.network/docs/lp-6501-fhecrdt-docreceipts) — On-chain document update receipts
+- [LP-6502: DAReceipts](https://lps.lux.network/docs/lp-6502-fhecrdt-dareceipts) — Data availability certificates
+
 ## Security Considerations
 
 ### Relay Node Trust Model

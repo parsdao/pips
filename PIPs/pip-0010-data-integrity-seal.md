@@ -515,6 +515,36 @@ A simple hash-and-sign approach fails the Pars threat model:
 3. **No deniability**: A signed hash on your device is incriminating evidence
 4. **No offline temporal proof**: No way to prove when the seal was created without a trusted clock
 
+## Reference Implementation
+
+### Smart Contract (Solidity + FHE)
+
+**Repository**: [luxfhe/examples/data-seal](https://github.com/luxfhe/luxfhe/tree/main/examples/data-seal)
+
+| File | Description |
+|:-----|:------------|
+| `contracts/DataSeal.sol` | Core seal contract with FHE-encrypted integrity tags, batch sealing, homomorphic verification |
+| `test/DataSeal.test.ts` | 10+ test cases: seal creation (Public/ZK/Private), verification, batch operations, revocation |
+| `tasks/seal.ts` | Create seals via CLI |
+| `tasks/verify-seal.ts` | Verify seals via encrypted comparison |
+| `tasks/batch-seal.ts` | Batch seal multiple documents |
+
+### Boolean-Circuit FHE (Go)
+
+**Repository**: [luxfi/fhe/cmd/seal](https://github.com/luxfi/fhe/tree/main/cmd/seal)
+
+Pure Go implementation using boolean gate FHE (TFHE):
+- SHA-256 hash encrypted bit-by-bit under FHE
+- Homomorphic XNOR + AND chain for verification
+- Hash never revealed during verification
+- Configurable bit depth (1-256 bits)
+
+### Lux Network LP
+
+**Specification**: [LP-0535: Verifiable Data Integrity Seal Protocol](https://lps.lux.network/docs/lp-0535-verifiable-data-integrity-seal)
+
+Includes Z-Chain precompile addresses (`0x0535-0x0538`), Poseidon2 Merkle accumulator, cross-chain export via Groth16 wrapper proofs.
+
 ## Security Considerations
 
 ### Threat Model

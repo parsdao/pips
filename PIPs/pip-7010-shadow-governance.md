@@ -615,6 +615,43 @@ For a diaspora that has lived under authoritarian rule for decades:
 - Committee work builds consensus-building skills
 - When political change comes, the diaspora will have practiced governance
 
+## Reference Implementation
+
+### Smart Contract (Solidity + FHE)
+
+**Repository**: [luxfhe/examples/shadow-governance](https://github.com/luxfhe/luxfhe/tree/main/examples/shadow-governance)
+
+| File | Description |
+|:-----|:------------|
+| `contracts/ShadowGovernance.sol` | Ministry management, anonymous proposals, FHE-encrypted voting with homomorphic tallying, nullifier-based double-vote prevention, quorum enforcement |
+| `test/ShadowGovernance.test.ts` | Ministry CRUD, proposal lifecycle, encrypted vote casting, tally + finalization, access control |
+| `tasks/propose.ts` | Create governance proposals |
+| `tasks/vote.ts` | Cast anonymous encrypted votes |
+| `tasks/tally.ts` | Start tally and finalize proposals |
+| `tasks/list-ministries.ts` | List shadow ministries |
+
+### Voting Subsystem
+
+**Repository**: [luxfhe/examples/confidential-voting](https://github.com/luxfhe/luxfhe/tree/main/examples/confidential-voting)
+
+Production-ready encrypted voting contract used as the foundation for shadow governance elections.
+
+### Boolean-Circuit FHE (Go)
+
+**Repository**: [luxfi/fhe/cmd/vote](https://github.com/luxfi/fhe/tree/main/cmd/vote)
+
+Pure Go encrypted voting with boolean gate FHE (TFHE), demonstrating the core homomorphic tallying primitives.
+
+### Related PIPs
+
+- [PIP-0012: Encrypted Voting](./pip-0012-encrypted-voting) — Underlying voting protocol
+- [PIP-0013: Encrypted CRDT](./pip-0013-encrypted-crdt) — Encrypted collaboration for committee deliberations
+- [PIP-0010: Data Integrity Seal](./pip-0010-data-integrity-seal) — Evidence sealing for shadow government reports
+
+### Deployment
+
+Target: [pars.vote](https://pars.vote) — Production shadow governance platform for the Persian diaspora.
+
 ## Security Considerations
 
 ### Complete Anonymity

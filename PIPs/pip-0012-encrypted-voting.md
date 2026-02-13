@@ -504,6 +504,40 @@ PIP-7010 defines a shadow governance protocol that uses this voting system. The 
 - Educational democratic exercises
 - Diaspora-wide opinion polling on sensitive topics
 
+## Reference Implementation
+
+### Smart Contract (Solidity + FHE)
+
+**Repository**: [luxfhe/examples/confidential-voting](https://github.com/luxfhe/luxfhe/tree/main/examples/confidential-voting)
+
+Production-ready encrypted voting with:
+- FHE-encrypted ballot submission using `@luxfi/contracts/fhe/FHE.sol`
+- Homomorphic vote tallying (add encrypted ballots without decrypting)
+- Async threshold decryption for final results
+- Candidate registration and voter management
+
+Additional voting examples:
+- [luxfhe/examples/fhe-voting](https://github.com/luxfhe/luxfhe/tree/main/examples/fhe-voting) — Simplified voting demo
+- [luxfhe/examples/voting](https://github.com/luxfhe/luxfhe/tree/main/examples/voting) — Basic voting pattern
+
+### Shadow Governance Integration
+
+**Repository**: [luxfhe/examples/shadow-governance](https://github.com/luxfhe/luxfhe/tree/main/examples/shadow-governance)
+
+Full anonymous governance protocol combining encrypted voting with:
+- Shadow ministries for parallel governance
+- Nullifier-based double-vote prevention
+- Quorum enforcement
+
+### Boolean-Circuit FHE (Go)
+
+**Repository**: [luxfi/fhe/cmd/vote](https://github.com/luxfi/fhe/tree/main/cmd/vote)
+
+Pure Go implementation using boolean gate FHE (TFHE):
+- Encrypted ballots with XOR + AND ripple-carry adder
+- Homomorphic accumulation without decryption
+- Configurable ballot width (1-32 bits)
+
 ## Security Considerations
 
 ### Ballot Privacy

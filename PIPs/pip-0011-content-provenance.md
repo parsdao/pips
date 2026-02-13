@@ -485,6 +485,31 @@ C2PA alone is insufficient for the Pars threat model:
 
 Pars implements C2PA export as a compatibility layer, not as the primary system.
 
+## Reference Implementation
+
+### Smart Contract (Solidity + FHE)
+
+**Repository**: [luxfhe/examples/content-provenance](https://github.com/luxfhe/luxfhe/tree/main/examples/content-provenance)
+
+| File | Description |
+|:-----|:------------|
+| `contracts/ContentProvenance.sol` | Model manifests, content registration, derivation DAGs, FHE-encrypted model ID attestation |
+| `test/ContentProvenance.test.ts` | Model registration, media capture, AI output attestation, derivation chain tests |
+| `tasks/register-content.ts` | Register content (AI model, output, media, document) |
+| `tasks/attest-output.ts` | Prove AI output came from specific model via homomorphic comparison |
+| `tasks/verify-provenance.ts` | Trace provenance chain |
+
+### Boolean-Circuit FHE (Go)
+
+**Repository**: [luxfi/fhe/cmd/provenance](https://github.com/luxfi/fhe/tree/main/cmd/provenance) — AI model provenance verification
+**Repository**: [luxfi/fhe/cmd/mediaseal](https://github.com/luxfi/fhe/tree/main/cmd/mediaseal) — Media content authentication
+
+### Lux Network LP
+
+**Specification**: [LP-7110: AI & Media Content Provenance Standard](https://lps.lux.network/docs/lp-7110-ai-media-content-provenance)
+
+Full protocol for model sealing, output attestation with ZK proofs, media authentication, deepfake detection anchoring, and EU AI Act/C2PA compliance.
+
 ## Security Considerations
 
 ### Source Deanonymization Resistance
