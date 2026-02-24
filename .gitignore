@@ -3,3 +3,10 @@ node_modules
 .vitepress/cache
 *.local
 .DS_Store
+
+# Next.js docs site
+docs/out/
+docs/.docs/
+docs/.next/
+docs/node_modules/
+docs/public/search-index.json
