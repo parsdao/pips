@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { Command as CommandPrimitive } from 'cmdk';
 import * as Dialog from '@radix-ui/react-dialog';
-import { Search, FileText, Github, MessageSquare, ArrowRight, Hash, BookOpen, Settings, Vote } from 'lucide-react';
+import { Search, FileText, Github, MessageSquare, ArrowRight, Hash, BookOpen, Settings, Vote, Shield, User, MessageCircle, Brain, Book } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface SearchResult {
@@ -60,6 +60,46 @@ export function SearchDialog() {
         icon: <Settings className="h-4 w-4" />,
         action: () => router.push('/docs/category/core'),
         keywords: ['core', 'protocol', 'architecture', 'privacy', 'mesh', 'quantum'],
+      },
+      {
+        id: 'category-privacy',
+        label: 'Privacy & Cryptography',
+        description: 'PIP-100 to PIP-199 -- Zero-knowledge, encryption, anonymity',
+        icon: <Shield className="h-4 w-4" />,
+        action: () => router.push('/docs/category/privacy'),
+        keywords: ['privacy', 'cryptography', 'zk', 'zero-knowledge', 'encryption', 'stealth', 'ring'],
+      },
+      {
+        id: 'category-identity',
+        label: 'Identity & Access',
+        description: 'PIP-200 to PIP-299 -- DID, credentials, recovery',
+        icon: <User className="h-4 w-4" />,
+        action: () => router.push('/docs/category/identity'),
+        keywords: ['identity', 'did', 'credentials', 'recovery', 'reputation', 'pseudonym'],
+      },
+      {
+        id: 'category-communication',
+        label: 'Communication',
+        description: 'PIP-300 to PIP-399 -- Messaging, voice, broadcast',
+        icon: <MessageCircle className="h-4 w-4" />,
+        action: () => router.push('/docs/category/communication'),
+        keywords: ['messaging', 'voice', 'broadcast', 'chat', 'communication', 'encrypted'],
+      },
+      {
+        id: 'category-ai',
+        label: 'AI & Compute',
+        description: 'PIP-400 to PIP-499 -- Inference, models, Persian NLP',
+        icon: <Brain className="h-4 w-4" />,
+        action: () => router.push('/docs/category/ai'),
+        keywords: ['ai', 'compute', 'inference', 'nlp', 'persian', 'federated', 'model'],
+      },
+      {
+        id: 'category-content',
+        label: 'Content & Media',
+        description: 'PIP-500 to PIP-599 -- Publishing, archives, creator tools',
+        icon: <Book className="h-4 w-4" />,
+        action: () => router.push('/docs/category/content'),
+        keywords: ['content', 'media', 'publishing', 'archive', 'cultural', 'creator', 'library'],
       },
       {
         id: 'category-governance',

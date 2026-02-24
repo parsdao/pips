@@ -10,7 +10,7 @@ export interface PIPMetadata {
   description?: string;
   status?: 'Draft' | 'Review' | 'Last Call' | 'Final' | 'Withdrawn' | 'Stagnant' | 'Superseded';
   type?: 'Standards Track' | 'Meta' | 'Informational';
-  category?: 'Core' | 'Governance';
+  category?: 'Core' | 'Privacy' | 'Identity' | 'Communication' | 'AI' | 'Content' | 'Governance';
   author?: string;
   created?: string;
   updated?: string;
@@ -57,6 +57,61 @@ const PIP_CATEGORIES: CategoryMeta[] = [
     color: 'blue',
     learnMore: 'Core PIPs define the foundational architecture of Pars Network, including the dual-layer design (EVM L2 + Session daemon), mesh networking for censorship resistance, post-quantum cryptographic standards, coercion-resistant protocols, mobile-first node design, privacy-preserving session management, AI-integrated mining, node orchestration, token economics, data integrity seals, content provenance tracking, encrypted voting, and encrypted CRDTs for collaborative state.',
     keyTopics: ['Dual-layer architecture', 'Mesh networking', 'Post-quantum crypto', 'Coercion resistance', 'Mobile nodes', 'Session protocol', 'AI mining', 'Token economics', 'Data integrity', 'Encrypted voting'],
+  },
+  {
+    slug: 'privacy',
+    name: 'Privacy & Cryptography',
+    shortDesc: 'Zero-knowledge proofs, encryption, and anonymity',
+    description: 'Privacy-preserving technologies and cryptographic protocols for the Pars Network. Defines zero-knowledge identity, stealth addresses, ring signatures, encrypted smart contracts, private voting, metadata protection, threshold decryption, post-quantum key exchange, anonymous credentials, and plausible deniability mechanisms.',
+    range: [100, 199],
+    icon: 'shield',
+    color: 'purple',
+    learnMore: 'Privacy PIPs establish the cryptographic foundation enabling censorship resistance and coercion protection. These protocols ensure users can transact, communicate, and participate in governance without exposing their identity or activity patterns to adversaries.',
+    keyTopics: ['Zero-knowledge proofs', 'Stealth addresses', 'Ring signatures', 'Homomorphic encryption', 'Private voting', 'Metadata protection', 'Post-quantum crypto', 'Anonymous credentials'],
+  },
+  {
+    slug: 'identity',
+    name: 'Identity & Access',
+    shortDesc: 'Decentralized identity, credentials, and recovery',
+    description: 'Decentralized identity and access management for the Pars Network. Defines DID standards, verifiable credentials, social recovery wallets, reputation systems, biometric authentication, multi-device sync, delegated auth, identity portability, pseudonym management, and diaspora identity bridges.',
+    range: [200, 299],
+    icon: 'user',
+    color: 'cyan',
+    learnMore: 'Identity PIPs create a self-sovereign identity layer enabling diaspora communities to establish verifiable credentials, recover accounts through trusted guardians, maintain multiple pseudonyms, and bridge identities across jurisdictions — all without centralized identity providers.',
+    keyTopics: ['Decentralized identity', 'Verifiable credentials', 'Social recovery', 'Reputation system', 'Pseudonyms', 'Diaspora bridge', 'Cultural credentials', 'Emergency revocation'],
+  },
+  {
+    slug: 'communication',
+    name: 'Communication',
+    shortDesc: 'Encrypted messaging, voice, and broadcast protocols',
+    description: 'Censorship-resistant communication protocols for the Pars Network. Defines encrypted messaging, group chats, media sharing, voice calls, broadcast channels, offline messaging queues, relay incentives, anti-spam frameworks, content moderation DAOs, and emergency broadcast systems.',
+    range: [300, 399],
+    icon: 'message',
+    color: 'pink',
+    learnMore: 'Communication PIPs enable secure, censorship-resistant communication for diaspora communities. These protocols leverage the Session daemon layer for end-to-end encrypted messaging, decentralized voice calls, and store-and-forward delivery that works even when users are offline or behind censorship firewalls.',
+    keyTopics: ['E2E encryption', 'Group messaging', 'Voice calls', 'Broadcast channels', 'Offline messaging', 'Anti-spam', 'Content moderation', 'Emergency alerts'],
+  },
+  {
+    slug: 'ai',
+    name: 'AI & Compute',
+    shortDesc: 'Decentralized AI inference, models, and compute',
+    description: 'AI and distributed compute protocols for the Pars Network. Defines decentralized inference, model marketplaces, compute credits, Persian NLP model standards, federated learning, AI content detection, model governance, training data provenance, edge compute incentives, and AI safety monitoring.',
+    range: [400, 499],
+    icon: 'brain',
+    color: 'amber',
+    learnMore: 'AI PIPs establish a decentralized AI infrastructure layer prioritizing Persian/Farsi language capabilities. These protocols enable distributed model inference on mobile nodes, privacy-preserving federated learning, and a marketplace for AI models — with special attention to Persian NLP and cultural context understanding.',
+    keyTopics: ['Distributed inference', 'Model marketplace', 'Compute credits', 'Persian NLP', 'Federated learning', 'AI content detection', 'Training provenance', 'Edge compute'],
+  },
+  {
+    slug: 'content',
+    name: 'Content & Media',
+    shortDesc: 'Publishing, archiving, and creator monetization',
+    description: 'Content creation, preservation, and distribution protocols for the Pars Network. Defines decentralized publishing, cultural archives, creator monetization, content versioning, multimedia NFTs, translation incentives, podcast distribution, educational credentials, news verification, and digital library standards.',
+    range: [500, 599],
+    icon: 'book',
+    color: 'indigo',
+    learnMore: 'Content PIPs establish infrastructure for preserving and distributing Persian cultural heritage. These protocols enable censorship-resistant publishing, incentivized translation to/from Farsi, decentralized podcast hosting, verifiable news fact-checking, and a digital library for Persian literature — ensuring cultural works survive across generations.',
+    keyTopics: ['Censorship-resistant publishing', 'Cultural archives', 'Creator monetization', 'Content versioning', 'Multimedia NFTs', 'Translation incentives', 'News verification', 'Digital library'],
   },
   {
     slug: 'governance',

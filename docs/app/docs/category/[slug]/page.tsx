@@ -1,7 +1,7 @@
 import { source } from '@/lib/source';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Settings, Vote } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Settings, Vote, Shield, User, MessageCircle, Brain, BookOpen } from 'lucide-react';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -9,11 +9,21 @@ interface PageProps {
 
 const categoryIcons: Record<string, React.ReactNode> = {
   core: <Settings className="size-6" />,
+  privacy: <Shield className="size-6" />,
+  identity: <User className="size-6" />,
+  communication: <MessageCircle className="size-6" />,
+  ai: <Brain className="size-6" />,
+  content: <BookOpen className="size-6" />,
   governance: <Vote className="size-6" />,
 };
 
 const categoryColors: Record<string, { bg: string; border: string; text: string }> = {
   core: { bg: 'bg-blue-500/10', border: 'border-blue-500/20', text: 'text-blue-500' },
+  privacy: { bg: 'bg-purple-500/10', border: 'border-purple-500/20', text: 'text-purple-500' },
+  identity: { bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', text: 'text-cyan-500' },
+  communication: { bg: 'bg-pink-500/10', border: 'border-pink-500/20', text: 'text-pink-500' },
+  ai: { bg: 'bg-amber-500/10', border: 'border-amber-500/20', text: 'text-amber-500' },
+  content: { bg: 'bg-indigo-500/10', border: 'border-indigo-500/20', text: 'text-indigo-500' },
   governance: { bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', text: 'text-emerald-500' },
 };
 

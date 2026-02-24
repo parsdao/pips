@@ -10,15 +10,29 @@ import {
   Layers,
   Settings,
   Vote,
+  User,
+  MessageCircle,
+  Brain,
+  BookOpen,
 } from 'lucide-react';
 
 const iconComponents: Record<string, React.ComponentType<{ className?: string }>> = {
   settings: Settings,
+  shield: Shield,
+  user: User,
+  message: MessageCircle,
+  brain: Brain,
+  book: BookOpen,
   vote: Vote,
 };
 
 const colorClasses: Record<string, { bg: string; border: string; text: string }> = {
   blue: { bg: 'bg-blue-500/10', border: 'border-blue-500/20', text: 'text-blue-500' },
+  purple: { bg: 'bg-purple-500/10', border: 'border-purple-500/20', text: 'text-purple-500' },
+  cyan: { bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', text: 'text-cyan-500' },
+  pink: { bg: 'bg-pink-500/10', border: 'border-pink-500/20', text: 'text-pink-500' },
+  amber: { bg: 'bg-amber-500/10', border: 'border-amber-500/20', text: 'text-amber-500' },
+  indigo: { bg: 'bg-indigo-500/10', border: 'border-indigo-500/20', text: 'text-indigo-500' },
   emerald: { bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', text: 'text-emerald-500' },
 };
 
