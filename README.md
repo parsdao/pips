@@ -153,7 +153,6 @@ Draft → Review → Voting → Approved/Rejected → Implemented
 - **Website**: [pars.network](https://pars.network)
 - **Docs**: [docs.pars.network](https://docs.pars.network)
 - **GitHub**: [github.com/pars-network](https://github.com/pars-network)
-- **MIGA Protocol**: [miga.us.org](https://miga.us.org)
 
 ---
 

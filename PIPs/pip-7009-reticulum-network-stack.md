@@ -13,11 +13,11 @@
 
 ## Abstract
 
-This proposal enables Pars network validators to operate over Reticulum Network Stack (RNS), supporting mesh networking, LoRa connectivity, and offline-first operation for the MIGA Protocol infrastructure.
+This proposal enables Pars network validators to operate over Reticulum Network Stack (RNS), supporting mesh networking, LoRa connectivity, and offline-first operation for the Pars Network infrastructure.
 
 ## Motivation
 
-Pars network serves the MIGA Protocol which requires robust, censorship-resistant infrastructure. Traditional TCP/IP connectivity creates single points of failure and geographic constraints. RNS enables:
+Pars network serves the Pars Network which requires robust, censorship-resistant infrastructure. Traditional TCP/IP connectivity creates single points of failure and geographic constraints. RNS enables:
 
 - **Sovereign Infrastructure**: Validators in jurisdictions with internet restrictions
 - **Disaster Resilience**: Mesh networks that operate during infrastructure outages
@@ -88,7 +88,7 @@ All RNS links use:
 
 ### Announce Integration
 
-Pars validators include MIGA-specific app data in announcements:
+Pars validators include Pars Network-specific app data in announcements:
 
 ```go
 type ParsAnnounceData struct {
@@ -101,9 +101,9 @@ type ParsAnnounceData struct {
 
 ## Rationale
 
-### Why RNS for MIGA Protocol?
+### Why RNS for Pars Network?
 
-1. **Censorship Resistance**: MIGA Protocol requires validators that cannot be easily blocked
+1. **Censorship Resistance**: Pars Network requires validators that cannot be easily blocked
 2. **Geographic Distribution**: LoRa enables validators in remote locations
 3. **Network Resilience**: Mesh topology survives infrastructure failures
 4. **Sovereignty**: Nations can run validators without external internet dependencies
@@ -124,15 +124,15 @@ RNS provides:
 
 ## Post-Quantum Security (Hybrid Mode)
 
-Pars inherits hybrid post-quantum cryptography from LP-9701, with additional considerations specific to MIGA Protocol sovereign infrastructure requirements.
+Pars inherits hybrid post-quantum cryptography from LP-9701, with additional considerations specific to Pars Network sovereign infrastructure requirements.
 
-### Why Post-Quantum Matters for MIGA
+### Why Post-Quantum Matters for Pars Network
 
 1. **Long-Term Data Protection**: Sovereign infrastructure handles sensitive national data with multi-decade retention requirements. Harvest-now-decrypt-later attacks are a real threat.
 
 2. **Regulatory Compliance**: Many jurisdictions are mandating quantum-resistant cryptography for critical infrastructure. NIST requires federal systems to transition by 2035.
 
-3. **Forward Secrecy Duration**: MIGA validators may operate for decades. Cryptographic keys protecting historical transactions must resist future quantum computers.
+3. **Forward Secrecy Duration**: Pars Network validators may operate for decades. Cryptographic keys protecting historical transactions must resist future quantum computers.
 
 4. **Sovereignty Requirements**: Nations cannot rely on cryptographic protections that may fail within the operational lifetime of their infrastructure.
 
@@ -160,7 +160,7 @@ Both ML-KEM-768 and ML-DSA-65 provide NIST Level 3 security (~192-bit classical 
 
 ### Performance Impact for Low-Bandwidth Links
 
-MIGA deployments often use constrained networks (LoRa, satellite, rural cellular). Performance assessment:
+Pars Network deployments often use constrained networks (LoRa, satellite, rural cellular). Performance assessment:
 
 | Link Type | Bandwidth | Classical Handshake | Hybrid Handshake | Acceptable? |
 |-----------|-----------|---------------------|------------------|-------------|
@@ -232,7 +232,7 @@ Fully backwards compatible:
 ## Test Cases
 
 All LP-9701 tests apply. Additional Pars-specific tests:
-- MIGA app data serialization
+- Pars Network app data serialization
 - Cross-transport peer discovery
 - Gateway failover
 - Stake-weighted announcement priority
@@ -245,7 +245,7 @@ Implemented via LP-9701 inheritance. Pars-specific configuration in `pars-node` 
 
 - [LP-9701: Reticulum Network Stack Transport Support](../../../lux/lps/LPs/lp-9701-reticulum-network-stack.md)
 - [Reticulum Network Stack Manual](https://markqvist.github.io/Reticulum/manual/)
-- [MIGA Protocol Specification](https://pars.network/miga)
+- [Pars Network Specification](https://pars.network/miga)
 
 ## Copyright
 

@@ -19,7 +19,7 @@ This PIP defines the Liquid Staking Protocol for Pars Network. Users can deposit
 
 ## Motivation
 
-Users holding assets like ETH, BTC, PARS, CYRUS, or MIGA face a choice:
+Users holding assets like ETH, BTC, PARS, or CYRUS face a choice:
 - **Hold**: Keep assets liquid but earn no yield
 - **Stake**: Earn yield but lose liquidity
 
@@ -45,7 +45,6 @@ Liquid staking solves this by providing:
 │  │  BTC ──────► Stake ──────► LBTC (1:1)                                        │  │
 │  │  PARS ─────► Stake ──────► LPARS (1:1)                                       │  │
 │  │  CYRUS ────► Stake ──────► LCYRUS (1:1)                                      │  │
-│  │  MIGA ─────► Stake ──────► LMIGA (1:1)                                       │  │
 │  │                                                                               │  │
 │  └───────────────────────────────────────────────────────────────────────────────┘  │
 │                                      │                                               │
@@ -58,7 +57,7 @@ Liquid staking solves this by providing:
 │  │  │  ETH  → Validator staking, restaking (EigenLayer)                       │  │  │
 │  │  │  BTC  → Wrapped BTC yield strategies                                    │  │  │
 │  │  │  PARS → Protocol staking, gauge rewards                                 │  │  │
-│  │  │  CYRUS/MIGA → DAO treasury yield                                        │  │  │
+│  │  │  CYRUS → DAO treasury yield                                              │  │  │
 │  │  └─────────────────────────────────────────────────────────────────────────┘  │  │
 │  │                                                                               │  │
 │  │  Yield accrues to L-token holders via rebasing or exchange rate             │  │
@@ -148,7 +147,6 @@ interface ILiquidStakingToken {
 | **LBTC** | WBTC | Liquid Staked BTC | BTC yield strategies |
 | **LPARS** | PARS | Liquid Staked PARS | Protocol staking rewards |
 | **LCYRUS** | CYRUS | Liquid Staked CYRUS | DAO treasury yield |
-| **LMIGA** | MIGA | Liquid Staked MIGA | DAO treasury yield |
 
 ### Yield Strategies
 
@@ -184,7 +182,7 @@ L-token balance increases automatically as yield accrues:
 // Each LETH still redeems for 1 ETH
 ```
 
-#### 2. Exchange Rate (Default for LPARS, LCYRUS, LMIGA)
+#### 2. Exchange Rate (Default for LPARS, LCYRUS)
 
 L-token balance stays constant, exchange rate increases:
 
@@ -238,8 +236,8 @@ L-tokens get favorable bonding rates since they're yield-bearing:
 | A+ | **LETH, LBTC** | 6-14% | 7 days |
 | B | PARS | 8-18% | 14 days |
 | B+ | **LPARS** | 10-20% | 14 days |
-| C | CYRUS, MIGA | 10-22% | 21 days |
-| C+ | **LCYRUS, LMIGA** | 12-24% | 21 days |
+| C | CYRUS | 10-22% | 21 days |
+| C+ | **LCYRUS** | 12-24% | 21 days |
 | D | LP tokens | 12-25% | 28 days |
 
 ### Withdrawal Queue

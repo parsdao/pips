@@ -15,7 +15,7 @@ tier: governance
 
 ## Abstract
 
-This PIP defines ASHA (آشا) as the sole reserve token for Pars Protocol. ASHA is the only mintable/inflationary token in the system, backed by protocol treasury assets. Users obtain ASHA by bonding collateral assets (CYRUS, MIGA, PARS, stablecoins, ETH) at a discount. Governance power is exclusively through veASHA (vote-escrowed ASHA).
+This PIP defines ASHA (آشا) as the sole reserve token for Pars Protocol. ASHA is the only mintable/inflationary token in the system, backed by protocol treasury assets. Users obtain ASHA by bonding collateral assets (CYRUS, PARS, stablecoins, ETH) at a discount. Governance power is exclusively through veASHA (vote-escrowed ASHA).
 
 ## Motivation
 
@@ -24,13 +24,13 @@ The previous vePARS model conflated the network gas token (PARS) with governance
 1. **Governance capture risk** — Large PARS holders could dominate governance
 2. **Conflicting incentives** — Network gas needs vs governance locking
 3. **Unclear backing** — No explicit treasury backing for governance token
-4. **Multi-token confusion** — CYRUS, MIGA, PARS all competing for governance role
+4. **Multi-token confusion** — CYRUS, PARS both competing for governance role
 
 The ASHA architecture provides:
 
 - **Single governance token** — veASHA is the only way to vote
 - **Clear backing** — ASHA is backed by treasury assets
-- **Bonding utility** — CYRUS/MIGA/PARS become useful collateral
+- **Bonding utility** — CYRUS/PARS become useful collateral
 - **OHM-style mechanics** — Protocol-owned liquidity and reserve currency
 
 ## Specification
@@ -44,7 +44,7 @@ The ASHA architecture provides:
 │                                                                                  │
 │  COLLATERAL LAYER                                                                │
 │  ┌─────────────────────────────────────────────────────────────────────────────┐│
-│  │  CYRUS │ MIGA │ PARS │ USDC/USDT │ ETH/WETH │ LP Tokens                     ││
+│  │  CYRUS │ PARS │ USDC/USDT │ ETH/WETH │ LP Tokens                             ││
 │  │                                                                              ││
 │  │  These are BONDABLE COLLATERAL - NOT governance tokens                       ││
 │  └─────────────────────────────────────────────────────────────────────────────┘│
@@ -268,7 +268,7 @@ interface IBondDepository {
 
 ### Collateral Tiers
 
-All assets can be liquid staked (PIP-7008) to receive L-tokens (LETH, LBTC, LPARS, LCYRUS, LMIGA). L-tokens receive bonus discounts because they're yield-bearing.
+All assets can be liquid staked (PIP-7008) to receive L-tokens (LETH, LBTC, LPARS, LCYRUS). L-tokens receive bonus discounts because they're yield-bearing.
 
 | Tier | Collateral | Max Discount | Vesting | Risk Weight |
 |:-----|:-----------|:-------------|:--------|:------------|
@@ -277,8 +277,8 @@ All assets can be liquid staked (PIP-7008) to receive L-tokens (LETH, LBTC, LPAR
 | **A+** | LETH, LBTC | 6-14% | 7 days | 1.1x |
 | **B** | PARS (native) | 8-18% | 14 days | 1.5x |
 | **B+** | LPARS | 10-20% | 14 days | 1.4x |
-| **C** | CYRUS, MIGA | 10-22% | 21 days | 1.8x |
-| **C+** | LCYRUS, LMIGA | 12-24% | 21 days | 1.7x |
+| **C** | CYRUS | 10-22% | 21 days | 1.8x |
+| **C+** | LCYRUS | 12-24% | 21 days | 1.7x |
 | **D** | LP Tokens | 12-25% | 28 days | 2.0x |
 
 **L-token Bonus**: Liquid staked tokens get +2% max discount and -0.1x risk weight because they:
@@ -338,7 +338,7 @@ ASHA is backed by diversified treasury assets:
 |:------------|:------------------|:--------|
 | **Stablecoins** | 40-50% | Stability, operational runway |
 | **ETH/BTC** | 20-30% | Growth exposure, liquidity |
-| **Ecosystem** | 15-25% | PARS, CYRUS, MIGA alignment |
+| **Ecosystem** | 15-25% | PARS, CYRUS alignment |
 | **POL** | 10-20% | Protocol-owned liquidity |
 
 ### Backing Ratio

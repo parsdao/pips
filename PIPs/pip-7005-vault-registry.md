@@ -54,10 +54,10 @@ ERC-4626 provides:
 │               ▼                      ▼                      ▼                       │
 │  10 COMMITTEE VAULTS          WORKING GROUP VAULTS     SUB-DAO VAULTS              │
 │  ┌─────────────────┐         ┌─────────────────┐      ┌─────────────────┐          │
-│  │ SECURITY (امنیّت) │         │ Temp WG Vault   │      │ MIGA Vault      │          │
-│  │ TREASURY (خزانه)  │         │ (All funds      │      │ CYRUS Vault     │          │
-│  │ GOVERNANCE (داد)  │         │  recallable)    │      │ (Bonded funds   │          │
-│  │ HEALTH (سلامت)    │         │                 │      │  NOT recallable)│          │
+│  │ SECURITY (امنیّت) │         │ Temp WG Vault   │      │ CYRUS Vault     │          │
+│  │ TREASURY (خزانه)  │         │ (All funds      │      │ (Bonded funds   │          │
+│  │ GOVERNANCE (داد)  │         │  recallable)    │      │  NOT recallable)│          │
+│  │ HEALTH (سلامت)    │         │                 │      │                 │          │
 │  │ CULTURE (فرهنگ)   │         └─────────────────┘      └─────────────────┘          │
 │  │ RESEARCH (دانش)   │                                                               │
 │  │ INFRA (سازندگی)   │                                                               │
@@ -100,7 +100,7 @@ interface IVaultRegistry {
     function getVaults() external view returns (address[] memory);
 
     /// @notice Get vault by entity (committee, subdao)
-    /// @param entity The entity identifier (e.g., "SECURITY", "MIGA")
+    /// @param entity The entity identifier (e.g., "SECURITY", "CYRUS")
     /// @return Vault address
     function getVaultByEntity(bytes32 entity) external view returns (address);
 
@@ -272,7 +272,7 @@ This preserves **community sovereignty** while giving parent **oversight over de
 |:-----|:----------|:-------------------|:--------|
 | **Committee** | Safe + Council + Charter + Identity Token | Allocated: Yes, Bonded: No | Security (AMN), Treasury (KHAZ) |
 | **Working Group** | Lighter Safe, temporary | ALL funds recallable | Task forces |
-| **Sub-DAO** | Full DAO structure, independent | Bonded funds NOT recallable | MIGA, CYRUS |
+| **Sub-DAO** | Full DAO structure, independent | Bonded funds NOT recallable | CYRUS |
 
 ### Committee Identity Tokens
 
