@@ -7,15 +7,17 @@ status: Final
 type: Informational
 category: Meta
 created: 2026-02-14
-tags: [chronology, version-history, meta, gpu-native, sovereign-l1, trifecta]
+tags: [chronology, version-history, meta, gpu-native, sovereign-l1, financial-rail-core]
 ---
 
 ## Abstract
 
 This PIP is the canonical chronology of the Pars Network: the two
 locked version milestones, their activation dates, the consensus and
-execution stack at each step, and what the trifecta (DEX + EVM + FHE)
-came to mean for Pars on 2026-02-14. It exists so that any future
+execution stack at each step, and how the 4-chain set
+(DEX + EVM + FHE + SessionVM/S-Chain) plus Pars-specific
+precompiles (Persian-NLP/PNS/Calendar) came together at 2026-02-14.
+It exists so that any future
 contributor can answer the question "what was Pars at version N?"
 with one authoritative source.
 
@@ -31,12 +33,24 @@ additivity guarantees.
 | Version | Active from | Theme | Defining changes | Reference paper |
 |---|---|---|---|---|
 | 1.0 | 2025 | Dual-layer messaging substrate | EVM-compatible Layer 2 rollup posting state roots to Lux for security inheritance; Session daemon layer for end-to-end encrypted messaging with forward secrecy and deniability; mesh transport over LoRa/Bluetooth/IP; federated-learning fabric for Persian-language model training; ML-DSA-87 / ML-KEM-1024 / SPHINCS+ post-quantum migration plan. 2,400 TPS, 1.2-s confirmation. | `pars-whitepaper` (1.0), `pars-dual-layer`, `pars-session-protocol` |
-| 2.0 | 2026-02-14 | GPU-native sovereign L1 with DEX+EVM+FHE trifecta | Graduation from rollup to sovereign L1 on the Lux-family primary chain template (LP-134); Quasar 4.0 consensus; QuasarSTM 4.0 execution; GPU-Residency invariant (LP-137); native PARSWAP DEX over Lux LXBook/LXPool; FHE substrate at 0x0700 with CKKS/TFHE hybrid; Pars-specific precompiles 0x0c01--0x0c03 (calendar, PNS, Persian-NLP); Liquidity Protocol onboarding wave 2026-04-20. | `pars-2-0-launch` |
+| 2.0 | 2026-02-14 | GPU-native sovereign L1 with 4-chain set (DEX+EVM+FHE+SessionVM) | Graduation from rollup to sovereign L1 on the Lux-family primary chain template (LP-134); Quasar 4.0 consensus; QuasarSTM 4.0 execution; GPU-Residency invariant (LP-137); native PARSWAP DEX over Lux LXBook/LXPool; FHE substrate at 0x0700 with CKKS/TFHE hybrid; Pars-specific precompiles 0x0c01--0x0c03 (calendar, PNS, Persian-NLP); Liquidity Protocol onboarding wave 2026-04-20. | `pars-2-0-launch` |
 
-## 2.0 Trifecta
+## 2.0 Four-Chain Set (DEX+EVM+FHE+SessionVM)
 
-A Lux-family L1 is trifecta-complete when it carries three first-class
-subsystems. Pars 2.0 specialises each one for the diaspora use case:
+Pars 2.0 runs exactly **4 chains**: DEX, EVM, FHE, and SessionVM
+(S-Chain). The first three are the financial-rail core that Hanzo
+4.0 ships as its canonical *triumvirate*. **S-Chain is
+Pars-original** — the post-quantum secure messaging substrate
+wire-compatible with Session/Oxen, upgraded to ML-DSA-65 + ML-KEM-768.
+
+Pars does NOT run its own P-Chain or X-Chain. Validator staking,
+UTXO assets, threshold-key ceremonies (Q-Chain), ZK rollups
+(Z-Chain), attestation (A-Chain / AIVM), bridging (B-Chain), and
+MPC ceremonies (M-Chain) are accessed **natively** via the Lux
+primary network — same Quasar cert lanes, same subject-binding,
+same finality, no wrapped assets, no cross-chain hop tax.
+
+Each Pars-resident chain:
 
 1. **DEX --- PARSWAP.** A constant-function AMM over the canonical
    Lux LXBook/LXPool primitives, with pools tuned for IRT-pegged
@@ -56,6 +70,15 @@ subsystems. Pars 2.0 specialises each one for the diaspora use case:
    tallied homomorphically (PIP-0104); (iii) encrypted federated-learning
    gradient aggregation, removing the honest-aggregator assumption from
    1.0.
+4. **SessionVM --- S-Chain post-quantum messaging.** Pars-original.
+   Wire-compatible with Session/Oxen (`libquic` transport, `liboxenmq`
+   message queue, SQLite storage), upgraded to ML-DSA-65 signatures
+   and ML-KEM-768 key encapsulation. 24-hour session TTL,
+   10K-message rolling buffer, 30-day retention. Swarm-based sharding
+   over `~10 GB/node`. Replaces the 1.0 dual-layer Session daemon
+   with a first-class chain runtime carrying the same wire protocol.
+   See PIP-0005 (session protocol) and PIP-0007 (`parsd`
+   architecture).
 
 ## Strict Additivity
 
